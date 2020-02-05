@@ -8,7 +8,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <!-- Styles -->
         <style>
             html, body {
@@ -65,30 +65,33 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
+            
             <div class="content">
                 <div class="title m-b-md">
                     Laravel
                 </div>
 
                 <div class="links">
-                    <a href="{{route('users.hasOne')}}">hasOne User</a>
-                    <a href="{{route('users.belongsTo')}}">belongsTo User</a>
-                    <a href="{{route('users.post')}}">Post</a>
-                    <a href="{{route('postByUser')}}">Post By User</a>
+                    <table class="table table-border">
+                    	<thead>
+                    		<tr>
+                    			<th>ID</th>
+                    			<th>Name</th>
+                    			<th>Email</th>
+                    			<th>Phone</th>
+                    		</tr>
+                    	</thead>
+                    	<tbody>
+                    		@foreach( $phone as $row )
+                    		<tr>
+                    			<td>{{$row->id}}</td>
+                    			<td>{{$row->user->name}}</td>
+                    			<td>{{$row->user->email}}</td>
+                    			<td>{{$row->phone}}</td>
+                    		</tr>
+                    		@endforeach
+                    	</tbody>
+                    </table>
                     
                 </div>
             </div>

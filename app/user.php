@@ -9,4 +9,14 @@ class user extends Model
     protected $fillable = [
     	'name', 'email',
     ];
+
+    public function phone()
+    {
+    	return $this->hasOne('App\phone');
+    }
+
+    public function user()
+    {
+    	return $this->hasMany('App\user');
+    }
 }
